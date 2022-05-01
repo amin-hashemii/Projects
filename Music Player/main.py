@@ -55,6 +55,7 @@ class Song:
         self.song = mixer.Sound(os.path.join(path, files[self.current_song]))
         self.max_count = len(files)
         self.metadata = audio_metadata.load(os.path.join(path, files[self.current_song]))
+        self.none = 'None'
 
     def play(self):
         self.song.play()
@@ -87,22 +88,40 @@ class Song:
         self.song.set_volume(vol)
 
     def get_size(self):
-        return str(self.metadata['filesize'])
+        try:
+            return str(self.metadata['filesize'])
+        except:
+            return self.none
 
     def get_len(self):
-        return str(self.metadata.streaminfo['duration'])
+        try:
+            return str(self.metadata.streaminfo['duration'])
+        except:
+            return self.none
         
     def get_album(self):
-        return str(self.metadata.tags['album'])
+        try:
+            return str(self.metadata.tags['album'])
+        except:
+            return self.none
     
     def get_artist(self):
-        return str(self.metadata.tags['artist'])
+        try:
+            return str(self.metadata.tags['artist'])
+        except:
+            return self.none
 
     def get_date(self):
-        return str(self.metadata.tags['date'])
+        try:
+            return str(self.metadata.tags['date'])
+        except:
+            return self.none
 
     def get_title(self):
-        return str(self.metadata.tags['title'])
+        try:
+            return str(self.metadata.tags['title'])
+        except:
+            return self.none
 
 
 pauseButton = image.load('src\\pauseButton.png')
